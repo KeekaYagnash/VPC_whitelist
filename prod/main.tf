@@ -22,5 +22,5 @@ module "static_website" {
 
 module "write_to_db" {
   source             = "../modules/write_to_db"
-  intemediate_s3_arn = module.s3_bucket_intermediate.s3_intermediate
+  intemediate_s3_arn = "test-terraform-code-prod-website-hosting-disraptor"
 }
