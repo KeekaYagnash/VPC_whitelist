@@ -12,9 +12,9 @@ terraform {
   }
 }
 
-# module "s3_bucket_intermediate" {
-#   source = "../modules/S3_bucket"
-# }
+module "s3_bucket_intermediate" {
+  source = "../modules/S3_bucket"
+}
 
 module "static_website" {
   source = "../modules/S3_static"
