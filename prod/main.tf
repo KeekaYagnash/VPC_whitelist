@@ -6,7 +6,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "test-d-p-terraform-state"
-    key            = "prod/vpc-whitelisting/terraform.tfstate"
+    key            = "test/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "disraptor-market-place-terraform-state-lock"
   }
