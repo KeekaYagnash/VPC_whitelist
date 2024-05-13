@@ -7,15 +7,6 @@ provider "aws" {
   region = "us-east-1"
 }
 
-terraform {
-  backend "s3" {
-    bucket         = "disraptor-terraform-state"
-    key            = "prod/vpc-whitelisting/terraform.tfstate"
-    region         = "eu-central-1"
-    dynamodb_table = "disraptor-market-place-terraform-state-lock"
-  }
-}
-
 # create vpc here
 #Variables
 variable "vpc_cidr_block" {
@@ -35,7 +26,7 @@ resource "aws_vpc" "level_finance_vpc" {
 
   }
 }
- 
+
 module "main_subnets" {
   source            = "../modules/Subnets/"
   subnet_name       = ["marketplace-subnet", "payment-subnet", "payroll-subnet", "atomic-subnet", "flexiplepay-subnet"]
