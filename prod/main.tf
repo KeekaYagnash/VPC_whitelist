@@ -129,28 +129,28 @@ module "mp_security_group" {
 
 }
 
-module "payment_security_group" {
-  source      = "../modules/security-groups"
-  vpc_id      = aws_vpc.level_finance_vpc.id
-  service     = "payment"
-  sg_name     = "payment-security-group"
-  description = "security group for payment"
+# module "payment_security_group" {
+#   source      = "../modules/security-groups"
+#   vpc_id      = aws_vpc.level_finance_vpc.id
+#   service     = "payment"
+#   sg_name     = "payment-security-group"
+#   description = "security group for payment"
 
-  ingress = [{
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24", "10.0.6.0/24"]
-  }]
+#   ingress = [{
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["10.0.1.0/24", "10.0.6.0/24"]
+#   }]
 
-  egress = [{
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["10.0.1.0/24", "10.0.6.0/24"]
-  }]
+#   egress = [{
+#     from_port   = 0
+#     to_port     = 0
+#     protocol    = "-1"
+#     cidr_blocks = ["10.0.1.0/24", "10.0.6.0/24"]
+#   }]
 
-}
+# }
 
 module "payroll_security_group" {
   source      = "../modules/security-groups"
