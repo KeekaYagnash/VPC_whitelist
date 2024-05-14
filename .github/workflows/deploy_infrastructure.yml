@@ -62,7 +62,7 @@ jobs:
 
       - name: Terraform apply
         id: apply
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
         working-directory: ${{ env.working-directory }}
         env:
           TF_INPUT: true
@@ -109,7 +109,7 @@ jobs:
 
       - name: Terraform apply
         id: apply
-        run: terraform apply -auto-approve
+        run: terraform destroy -auto-approve
         working-directory: ${{ env.staging-directory }}
         env:
           TF_INPUT: true

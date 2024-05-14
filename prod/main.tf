@@ -20,7 +20,7 @@ module "static_website" {
   source = "../modules/S3_static"
 }
 
-module "write_to_db" {
+module "write_to_db" { 
   source             = "../modules/write_to_db"
   intemediate_s3_arn = "arn:aws:s3:::test-my-code-prompt-query-and-context"
 }

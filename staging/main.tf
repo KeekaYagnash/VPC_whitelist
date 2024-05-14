@@ -20,7 +20,7 @@ resource "aws_s3_bucket" "prompt_lambda_code_upload" {
     owner       = "disraptor",
     environment = "prod",
     service     = "AI-Shop",
-    type        = "application"
+    type        = "application" 
   }
 }
 
