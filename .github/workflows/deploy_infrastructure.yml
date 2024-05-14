@@ -7,8 +7,10 @@ on:
       - "main"
     paths:
       - "prod/*"
+      - "staging/*"
 env:
   working-directory: "./prod/"
+  staging-directory: "./staging/"
 jobs:
   # if_merged:
   #   if: github.event_name.merged == true
@@ -62,5 +64,52 @@ jobs:
         id: apply
         run: terraform apply -auto-approve
         working-directory: ${{ env.working-directory }}
+        env:
+          TF_INPUT: true
+  build-staging-image:
+    name: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Install Terraform
+        uses: little-core-labs/install-terraform@v2.0.0
+        with:
+          version: latest
+
+      - name: 1st Terraform Init
+        id: init
+        run: terraform init
+        working-directory: ${{ env.staging-directory }}
+        env:
+          TF_INPUT: true
+        continue-on-error: true
+
+      - name: 2nd Terraform init
+        id: init2
+        run: terraform init
+        working-directory: ${{ env.staging-directory }}
+        env:
+          TF_INPUT: true
+
+      - name: Terraform plan
+        id: plan
+        run: terraform plan
+        working-directory: ${{ env.staging-directory }}
+        env:
+          TF_INPUT: true
+
+      - name: Terraform apply
+        id: apply
+        run: terraform apply -auto-approve
+        working-directory: ${{ env.staging-directory }}
         env:
           TF_INPUT: true

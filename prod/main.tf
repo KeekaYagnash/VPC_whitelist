@@ -6,7 +6,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "test-d-p-terraform-state"
-    key            = "test/terraform.tfstate"
+    key            = "production/test/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "disraptor-market-place-terraform-state-lock"
   }
@@ -22,5 +22,5 @@ module "static_website" {
 
 module "write_to_db" {
   source             = "../modules/write_to_db"
-  intemediate_s3_arn = "test-terraform-code-prod-website-hosting-disraptor"
+  intemediate_s3_arn = "s3://test-terraform-code-prod-website-hosting-disraptor"
 }
