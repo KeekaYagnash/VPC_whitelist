@@ -22,5 +22,5 @@ module "static_website" {
 
 module "write_to_db" {
   source             = "../modules/write_to_db"
-  intemediate_s3_arn = "s3://test-terraform-code-prod-website-hosting-disraptor"
+  intemediate_s3_arn = "arn:aws:s3:::test-my-code-prompt-query-and-context"
 }
