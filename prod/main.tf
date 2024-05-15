@@ -93,7 +93,7 @@ resource "aws_iam_role_policy_attachment" "policy_attachment" {
   policy_arn = aws_iam_policy.policy_create.arn
 }
 
-resource "aws_codebuild_project" "" {
+resource "aws_codebuild_project" "test" {
   name          = "test-project"
   build_timeout = 5
   service_role  = aws_iam_role.codebuild_role.arn
