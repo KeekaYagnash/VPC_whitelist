@@ -124,7 +124,7 @@ resource "aws_codebuild_project" "test" {
     s3_logs {
       status   = "ENABLED"
       location = "${aws_s3_bucket.cb_bucket.id}/build-log"
-    }
+    } 
   }
   source {
     type            = "CODECOMMIT"
