@@ -19,7 +19,7 @@ resource "aws_s3_bucket" "cb_bucket" {
 resource "aws_s3_bucket_acl" "s3_acl" {
   bucket = aws_s3_bucket.cb_bucket.id
   acl    = "private"
-}
+} 
 
 data "aws_iam_policy_document" "assume_role" {
   statement {
